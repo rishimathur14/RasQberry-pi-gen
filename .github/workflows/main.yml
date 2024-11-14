@@ -8,7 +8,7 @@ on:
 
 jobs:
   build-image:
-    runs-on: debian
+    runs-on: ubuntu-latest
     steps:
 
       - name: Install Pi-gen (Raspberry Pi OS image generator)
