@@ -97,10 +97,6 @@ jobs:
           # Password of the intial user account, locked if empty.
           password: 'Qiskit1!'
       
-          # Path where selected pi-gen ref will be checked out to. If the path does not yet 
-          # exist, it will be created (including its parents).
-          pi-gen-dir: RasQberry-pi-gen
-      
           # The release name to use in `/etc/issue.txt`. The default should only be used for 
           # official Raspberry Pi builds.
           pi-gen-release: Raspberry Pi Qiskit Release
