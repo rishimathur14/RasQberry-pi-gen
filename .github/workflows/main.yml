@@ -8,7 +8,7 @@ on:
 
 jobs:
   build-image:
-    runs-on: debian-latest
+    runs-on: ubuntu-latest
     steps:
 
       - name: Install Pi-gen (Raspberry Pi OS image generator)
@@ -18,6 +18,7 @@ jobs:
 
       - name: Configure Pi-gen Build
         run: |
+          chmod -R 755 /RasQberry-pi-gen
           cd RasQberry-pi-gen
           # Customize your Raspberry Pi OS build configuration here
           # For example, edit config or stage files to add/remove software
@@ -25,4 +26,5 @@ jobs:
       - name: Build Raspberry Pi Image
         run: |
           cd RasQberry-pi-gen
+          chmod +x ./build.sh
           sudo ./build.sh -c config  # Executes the build process
