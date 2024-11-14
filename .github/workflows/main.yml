@@ -95,7 +95,7 @@ jobs:
           locale: en_GB.UTF-8
       
           # Password of the intial user account, locked if empty.
-          password: ''
+          password: 'Qiskit1!'
       
           # Path where selected pi-gen ref will be checked out to. If the path does not yet 
           # exist, it will be created (including its parents).
@@ -103,7 +103,7 @@ jobs:
       
           # The release name to use in `/etc/issue.txt`. The default should only be used for 
           # official Raspberry Pi builds.
-          pi-gen-release: Raspberry Pi reference
+          pi-gen-release: Raspberry Pi Qiskit Release
     
       
           # Setting to `1` will disable password authentication for SSH and enable public 
