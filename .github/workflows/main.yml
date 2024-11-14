@@ -59,7 +59,7 @@ jobs:
           mkdir -p deploy
 
           # Copy the image to the deploy folder
-          cp ${{ steps.pi-gen-build.outputs.image-path }}/*full.zip deploy/
+          cp ${{ steps.pi-gen-build.outputs.image-path }} deploy/
 
           # Add, commit, and push the image
           git add deploy/*
