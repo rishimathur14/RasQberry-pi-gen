@@ -18,6 +18,8 @@ jobs:
 
       - name: Configure Pi-gen Build
         run: |
+          apt-get update
+          apt-get install -y coreutils quilt parted qemu-user-static debootstrap zerofree zip dosfstools libarchive-tools libcap2-bin grep rsync xz-utils file git curl bc gpg pigz xxd arch-test bash kmod  nano sed python3-pip python3-venv 
           chmod -R 755 RasQberry-pi-gen
           cd RasQberry-pi-gen
           # Customize your Raspberry Pi OS build configuration here
