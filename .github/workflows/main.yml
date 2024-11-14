@@ -63,7 +63,7 @@ jobs:
 
           # Copy the image to the deploy folder
           cp ${{ steps.pi-gen-build.outputs.image-path }} deploy/
-
+          echo "https://${GITHUB_TOKEN}@github.com/${{ github.repository }}.git"
           # Add, commit, and push the image
           git add deploy/*
           git commit -m "Add new Raspberry Pi image"
