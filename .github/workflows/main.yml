@@ -13,6 +13,7 @@ jobs:
     steps:
       - name: setraspiconfig
         uses: usimd/pi-gen-action@v1
+        id: pi-gen-build
         with:
           # If you require the use of an apt proxy, set it here. This proxy setting will not 
           # be included in the image, making it safe to use an apt-cacher or similar package 
@@ -120,5 +121,19 @@ jobs:
           timezone: Europe/London
       
           # Print all output from pi-gen.
-          verbose-output: true
+          verbose-output: false
   
+      - uses: actions/upload-artifact@v4
+        name: upload_pi_gen_iamge
+        with:
+          path: ${{ steps.build.outputs.image-path }}
+
+      - name: Commit and Push Image to Repository
+        env:
+          GITHUB_TOKEN: ${{ secrets.SECRET_GITHUB_TOKEN }}
+        run: |
+          ls -lrt ${{ steps.build.outputs.image-path }}
+          echo "image path :"${{ steps.build.outputs.image-path }}
+          git add deploy/${{ steps.build.outputs.image-path }}/*full.zip
+          git commit -m "Add new Raspberry Pi image"
+          git push
