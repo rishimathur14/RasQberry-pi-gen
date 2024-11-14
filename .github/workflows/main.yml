@@ -102,7 +102,7 @@ jobs:
           pi-gen-release: Raspberry Pi reference
       
           # GitHub repository to fetch pi-gen from, must be a fork from RPi-Distro/pi-gen.
-          pi-gen-repository: RasQberry-pi-gen
+          pi-gen-repository: https://github.com/rishimathur14/RasQberry-pi-gen.git
       
           # Release version of pi-gen to use. This can both be a branch or tag name known in 
           # the pi-gen repository.
