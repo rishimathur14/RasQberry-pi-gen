@@ -67,4 +67,4 @@ jobs:
           # Add, commit, and push the image
           git add deploy/*
           git commit -m "Add new Raspberry Pi image"
-          git push
+          git push "https://${GITHUB_TOKEN}@github.com/${{ github.repository }}.git" arm64
