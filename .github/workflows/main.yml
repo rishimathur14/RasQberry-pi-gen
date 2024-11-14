@@ -52,6 +52,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.SECRET_GITHUB_TOKEN }}
         run: |
           # Verify the path and list files for debugging
+          echo  "worskspace :"$GITHUB_WORKSPACE
+          cd $GITHUB_WORKSPACE
+          git checkout arm64
           echo "Image path: ${{ steps.pi-gen-build.outputs.image-path }}"
           ls -lrt ${{ steps.pi-gen-build.outputs.image-path }}
 
