@@ -69,7 +69,7 @@ jobs:
           extra-host-modules: ''
       
           # Token to use for checking out pi-gen repo.
-          github-token: ${{ github.token }}
+          github-token: ${{ secret.SECRET_GITHUB_TOKEN }}
       
           # Host name of the image.
           hostname: raspberrypi
