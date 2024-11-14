@@ -18,7 +18,7 @@ jobs:
 
       - name: Configure Pi-gen Build
         run: |
-          chmod -R 755 /RasQberry-pi-gen
+          chmod -R 755 RasQberry-pi-gen
           cd RasQberry-pi-gen
           # Customize your Raspberry Pi OS build configuration here
           # For example, edit config or stage files to add/remove software
