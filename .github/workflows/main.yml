@@ -75,7 +75,7 @@ jobs:
           hostname: raspberrypi
       
           # Final image name.
-          image-name: 'rasqberry-two'
+          image-name: 'rasqberry-two-$RELEASE-$ARCH'
       
           # Enabling this option will remove plenty of components from the GitHub Actions 
           # runner that are not mandatory pre-requisites for a (vanilla) pi-gen build. This 
@@ -121,7 +121,12 @@ jobs:
       
           # Name of the initial user account.
           username: rasqberry
-      
+          GIT_REPO: https://github.com/JanLahmann/RasQberry-Two.git
+          GIT_BRANCH: 30-sw-platform-rishi
+          RASP_WGET: https://raw.githubusercontent.com/JanLahmann/RasQberry-raspi-config/bookworm/raspi-config
+          REPO: RasQberry-Two
+          STD_VENV: RQB2
+          RQB2_CONFDIR: ".local/config" 
           # Print all output from pi-gen.
-          verbose-output: false
+          verbose-output: true
   
