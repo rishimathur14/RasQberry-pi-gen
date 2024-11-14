@@ -178,8 +178,10 @@ jobs:
 
       - name: Build Raspberry Pi Image
         run: |
+          chmod -R 755 RasQberry-pi-gen
           cd RasQberry-pi-gen
-          sudo ./build.sh  # Executes the build process
+          chmod 755 ./build.sh
+          sudo ./build.sh -c config  # Executes the build process
 
       - name: Upload Raspberry Pi Image as an Artifact
         uses: actions/upload-artifact@v2
