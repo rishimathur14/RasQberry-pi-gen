@@ -32,7 +32,11 @@ jobs:
           # aware of the implied security risk of defining a default username and password 
           # for your devices.
           disable-first-boot-user-rename: 0
-      
+          
+          pi-gen-repository: rishimathur14/RasQberry-pi-gen
+          # Release version of pi-gen to use. This can both be a branch or tag name known in 
+          # the pi-gen repository.
+          pi-gen-version: arm64
           # Additional options to include in PIGEN_DOCKER_OPTS
           docker-opts: ''
       
@@ -124,26 +128,4 @@ jobs:
       
           # Print all output from pi-gen.
           verbose-output: false
-      
-    
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-        with:
-          repository: RasQberry-pi-gen
-          ref: arm64
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-
-      - name: Configure Pi-gen Build
-        run: |
-          cd RasQberry-pi-gen
-          # Customize your Raspberry Pi OS build configuration here
-          # For example, edit config or stage files to add/remove software
-
-      - name: Build Raspberry Pi Image
-        run: |
-          chmod -R 755 RasQberry-pi-gen
-          cd RasQberry-pi-gen
-          chmod 755 ./build.sh
-          sudo ./build.sh -c config  # Executes the build process
+  
