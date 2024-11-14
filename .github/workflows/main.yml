@@ -16,8 +16,8 @@ jobs:
         id: pi-gen-build
         with:
           apt-proxy: ''
-          compression: zip
-          compression-level: 6
+          compression: xz
+          compression-level: 8
           disable-first-boot-user-rename: 0
           pi-gen-repository: rishimathur14/RasQberry-pi-gen
           pi-gen-version: arm64
