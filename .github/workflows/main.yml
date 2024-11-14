@@ -9,12 +9,11 @@ on:
 jobs:
   build-image:
     runs-on: ubuntu-latest
-
     steps:
 
       - name: Install Pi-gen (Raspberry Pi OS image generator)
         run: |
-          git clone https://github.com/rishimathur14/RasQberry-pi-gen.git
+          git clone https://github.com/rishimathur14/RasQberry-pi-gen.git -b arm64
           cd RasQberry-pi-gen
 
       - name: Configure Pi-gen Build
