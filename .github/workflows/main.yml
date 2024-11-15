@@ -73,6 +73,9 @@ jobs:
           # Copy the image to the deploy folder
           cp ${{ steps.pi-gen-build.outputs.image-path }} deploy/
           echo "https://${GITHUB_TOKEN}@github.com/${{ github.repository }}.git"
+
+          git config --global user.email "rishimathur14@gmail.com"
+          git config --global user.name "Rishi Mathur"
           # Add, commit, and push the image
           git add -f deploy/*
           # Display branch and status before committing and pushing
