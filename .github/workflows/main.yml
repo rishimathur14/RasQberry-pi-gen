@@ -74,10 +74,10 @@ jobs:
           cp ${{ steps.pi-gen-build.outputs.image-path }} deploy/
           echo "https://${GITHUB_TOKEN}@github.com/${{ github.repository }}.git"
           # Add, commit, and push the image
-          git add deploy/*
+          git add -f deploy/*
           # Display branch and status before committing and pushing
           echo "Branch details before push:"
           git branch --show-current
           git status
           git commit -m "Add new Raspberry Pi image"
-          git push "https://${GITHUB_TOKEN}@github.com/${{ github.repository }}.git"
+          git push "https://${GITHUB_TOKEN}@github.com/${{ github.repository }}.git" arm64
