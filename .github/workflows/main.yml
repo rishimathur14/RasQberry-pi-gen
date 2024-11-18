@@ -13,7 +13,12 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
-        
+        with:
+          lfs: true
+      - name: Set up Git LFS
+        run: |
+          git lfs install
+          git lfs track "*.xz"
       - name: Print branch details
         run: |
           echo "Branch details:"
@@ -55,7 +60,6 @@ jobs:
         with:
           name: pi-gen-image
           path: ${{ steps.pi-gen-build.outputs.image-path }}
-
       - name: Commit and Push Image to Repository
         env:
           GITHUB_TOKEN: ${{ secrets.SECRET_GITHUB_TOKEN }}
