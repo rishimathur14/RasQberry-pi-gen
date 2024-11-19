@@ -48,7 +48,7 @@ jobs:
           export-last-stage-only: true
           extra-host-dependencies: ''
           extra-host-modules: ''
-          github-token: ${{ secrets.SECRET_GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           hostname: raspberrypi
           image-name: 'rasqberry-two'
           increase-runner-disk-size: true
