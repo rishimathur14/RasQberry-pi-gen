@@ -65,7 +65,7 @@ jobs:
         id: set_output
         run: |
           # Find the file dynamically in the 'deploy' directory
-          FILE_PATH= ${{ steps.pi-gen-build.outputs.image-path }}
+          FILE_PATH= ${{steps.pi-gen-build.outputs.image-path }}
           FILE_NAME=$(basename "$FILE_PATH")
           echo "asset_path=$FILE_PATH" >> $GITHUB_ENV
           echo "asset_name=$FILE_NAME" >> $GITHUB_ENV    
