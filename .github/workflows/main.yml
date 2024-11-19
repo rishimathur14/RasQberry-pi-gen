@@ -65,14 +65,13 @@ jobs:
         id: set_output
         run: |
           # Find the file dynamically in the 'deploy' directory
-          FILE_PATH= ${{steps.pi-gen-build.outputs.image-path }}
-          FILE_NAME=$(basename "$FILE_PATH")
+          FILE_NAME=$(basename "${{steps.pi-gen-build.outputs.image-path}}")
           echo "asset_path=$FILE_PATH" >> $GITHUB_ENV
           echo "asset_name=$FILE_NAME" >> $GITHUB_ENV    
       - name: Upload Release Asset to Target Repository
         uses: actions/upload-release-asset@v1
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ steps.pi-gen-build.outputs.image-path }}
-          asset_name: ${{ env.asset_name }}
+          upload_url: ${{steps.create_release.outputs.upload_url}}
+          asset_path: ${{steps.pi-gen-build.outputs.image-path}}
+          asset_name: ${{env.asset_name}}
           asset_content_type: application/x-xz
