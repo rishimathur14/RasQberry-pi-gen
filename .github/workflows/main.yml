@@ -76,6 +76,6 @@ jobs:
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{steps.create_release.outputs.upload_url}}
-          asset_path: ${{steps.pi-gen-build.outputs.image-path}}
+          asset_path: ${{env.asset_path}}
           asset_name: ${{env.asset_name}}
           asset_content_type: application/x-xz
