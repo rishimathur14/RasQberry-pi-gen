@@ -11,10 +11,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out repository
+      - name: Checkout target repository
         uses: actions/checkout@v3
         with:
-          lfs: true
+          repository: "rishimathur14/rasqberry-images"  # Replace with target repository
+          token: ${{ secrets.GITHUB_TOKEN }}
+          lfs: true 
       - name: Set up Git LFS
         run: |
           git lfs install
