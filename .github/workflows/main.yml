@@ -16,11 +16,16 @@ jobs:
         with:
           repository: "rishimathur14/rasqberry-images"  # Replace with target repository
           token: ${{ secrets.GITHUB_TOKEN }}
-          lfs: true 
-      - name: Set up Git LFS
-        run: |
-          git lfs install
-          git lfs track "*.xz"
+      - name: Create Release in Target Repository
+        id: create_release
+        uses: actions/create-release@v1
+        with:
+          tag_name: "v1.0"  # Update as needed
+          release_name: "Raspberry Pi Image"
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Print branch details
         run: |
           echo "Branch details:"
@@ -56,38 +61,18 @@ jobs:
           stage-list: stage0 stage1 stage2 stage3 stage4 stage5
           timezone: Europe/London
           verbose-output: false
-
-      - uses: actions/upload-artifact@v4
-        name: upload_pi_gen_image
-        with:
-          name: pi-gen-image
-          path: ${{ steps.pi-gen-build.outputs.image-path }}
-      - name: Commit and Push Image to Repository
-        env:
-          GITHUB_TOKEN: ${{ secrets.SECRET_GITHUB_TOKEN }}
+      - name: Set dynamic asset path and name
+        id: set_output
         run: |
-          # Verify the path and list files for debugging
-          echo  "worskspace :"${GITHUB_WORKSPACE}
-          cd ${GITHUB_WORKSPACE}
-          
-          echo "Image path: ${{ steps.pi-gen-build.outputs.image-path }}"
-          ls -lrt ${{ steps.pi-gen-build.outputs.image-path }}
-
-          # Create a deploy folder if it doesn't exist
-          mkdir -p deploy
-
-          # Copy the image to the deploy folder
-          cp ${{ steps.pi-gen-build.outputs.image-path }} deploy/
-          echo "https://${GITHUB_TOKEN}@github.com/${{ github.repository }}.git"
-
-          git config --global user.email "rishimathur14@gmail.com"
-          git config --global user.name "Rishi Mathur"
-          git config --global http.postBuffer 3221225472
-          # Add, commit, and push the image
-          git add -f deploy/*
-          # Display branch and status before committing and pushing
-          echo "Branch details before push:"
-          git branch --show-current
-          git status
-          git commit -m "Add new Raspberry Pi image"
-          git push "https://${GITHUB_TOKEN}@github.com/${{ github.repository }}.git"
+          # Find the file dynamically in the 'deploy' directory
+          FILE_PATH= ${{ steps.pi-gen-build.outputs.image-path }}
+          FILE_NAME=$(basename "$FILE_PATH")
+          echo "asset_path=$FILE_PATH" >> $GITHUB_ENV
+          echo "asset_name=$FILE_NAME" >> $GITHUB_ENV    
+      - name: Upload Release Asset to Target Repository
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ steps.pi-gen-build.outputs.image-path }}
+          asset_name: ${{ env.asset_name }}
+          asset_content_type: application/x-xz
