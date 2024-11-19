@@ -20,8 +20,8 @@ jobs:
         id: create_release
         uses: actions/create-release@v1
         with:
-          tag_name: "v1.1"  # Update as needed
-          release_name: "Raspberry Pi Image 19 Nov"
+          tag_name: "v1.2"  # Update as needed
+          release_name: "Raspberry Pi Image 19-1 Nov"
           draft: false
           prerelease: false
         env:
